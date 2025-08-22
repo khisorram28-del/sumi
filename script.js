@@ -1,28 +1,53 @@
-// --- Typewriter Effect for Heading ---
-const text = "💖 Welcome to My Romantic Website 💖";
-let i = 0;
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("main-heading").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, 100);
+// Questions + GIFs list
+const data = [
+  { q: "Do you love me? 🥰", gif: "catmiss3.gif" },
+  { q: "Please think again 🙏", gif: "cat4.gif" },
+  { q: "Ek aur baar soch lo 🤔", gif: "cat5.gif" },
+  { q: "Baby man jao, kitna bhav khaogi 😘", gif: "catkiss2.gif" }
+];
+
+let current = 0;
+
+// Load sounds
+const yesSound = new Audio("yes.mp3");
+const noSound = new Audio("no.mp3");
+
+function updateContent() {
+  document.getElementById("question").textContent = data[current].q;
+  document.getElementById("gif").src = data[current].gif;
+
+  // Last question → hide "No" button
+  if (current === data.length - 1) {
+    document.getElementById("noBtn").style.display = "none";
+  } else {
+    document.getElementById("noBtn").style.display = "inline-block";
   }
 }
-window.onload = typeWriter;
 
+// When user clicks "No"
+function nextQuestion() {
+  noSound.play();
 
-// --- Random GIF Show ---
-const gifs = ["catkiss2.gif", "catmiss3.gif"];
-function loadRandomGif() {
-  const randomIndex = Math.floor(Math.random() * gifs.length);
-  document.getElementById("main-gif").src = gifs[randomIndex];
-}
-window.addEventListener("load", loadRandomGif);
-
-
-// --- Click Event on GIF ---
-document.addEventListener("click", function (e) {
-  if (e.target.tagName === "IMG" && e.target.id === "main-gif") {
-    alert("You clicked on a cute GIF! 😍");
+  current++;
+  if (current < data.length) {
+    updateContent();
+  } else {
+    document.getElementById("question").classList.add("hidden");
+    document.getElementById("gif").classList.add("hidden");
+    document.querySelector(".buttons").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
   }
-});
+}
+
+// When user clicks "Yes"
+function sayYes() {
+  yesSound.play();
+
+  document.getElementById("question").classList.add("hidden");
+  document.getElementById("gif").classList.add("hidden");
+  document.querySelector(".buttons").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+}
+
+// Initial load
+window.onload = updateContent;
