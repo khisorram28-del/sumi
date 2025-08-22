@@ -1,62 +1,50 @@
-// Questions + Corresponding GIFs
-const data = [
-  { q: "Do you love me? 🥰", gif: "image/cat1.gif" },
-  { q: "Please think again 🙏", gif: "image/cat2.gif" },
-  { q: "Ek aur baar soch lo 🤔", gif: "image/cat3.gif" },
-  { q: "Baby man jao, kitna bhav khaogi 😘", gif: "image/cat4.gif" }
-];
-
-let current = 0;
-
-// Sounds
-const yesSound = new Audio("sounds/yes.mp3");
-const noSound = new Audio("sounds/no.mp3");
-
-// Update question + GIF
-function updateContent() {
-  const questionEl = document.getElementById("question");
-  const gifEl = document.getElementById("gif");
-  const noBtn = document.querySelector(".no");
-
-  questionEl.textContent = data[current].q;
-  gifEl.src = data[current].gif;
-
-  // GIF fade-in
-  gifEl.style.opacity = 0;
-  setTimeout(()=> { gifEl.style.transition="opacity 0.5s"; gifEl.style.opacity=1; }, 50);
-
-  // Hide "No" button on last question
-  if(current === data.length -1){
-    noBtn.style.display = "none";
-  } else {
-    noBtn.style.display = "inline-block";
-  }
+/* Reset default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// "No" button
-function nextQuestion() {
-  noSound.play();
-  current++;
-  if(current < data.length){
-    updateContent();
-  } else {
-    endQuiz();
-  }
+body {
+  background-image: url("image2.jpg"); /* tumhari background image */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
 }
 
-// "Yes" button
-function sayYes() {
-  yesSound.play();
-  endQuiz();
+/* Heading design */
+h1 {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 40px;
+  border-radius: 20px;
+  color: #ff99cc;
+  font-size: 40px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.7);
 }
 
-// End quiz
-function endQuiz() {
-  document.getElementById("question").classList.add("hidden");
-  document.getElementById("gif").classList.add("hidden");
-  document.querySelector(".buttons").classList.add("hidden");
-  document.getElementById("result").classList.remove("hidden");
+/* GIF container */
+.gif-box {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-// Initial load
-window.onload = updateContent;
+.gif-box img {
+  width: 220px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease;
+}
+
+.gif-box img:hover {
+  transform: scale(1.1);
+}
