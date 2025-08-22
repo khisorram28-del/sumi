@@ -3,7 +3,6 @@ const data = [
   { q: "The meru pyaar kero k? 🥰", gif: "catmiss3.gif" },
   { q: "kero ne ketok pyaar kero 🙏", gif: "cat4.gif" },
   { q: "baato jnne kiya kero 🤔", gif: "cat5.gif" },
-  { q: "batao batao 🤔", gif: "cat5.gif" },
   { q: "suglaa kissi missi bi kero ke 😘", gif: "catkiss2.gif" }
 ];
 
@@ -52,5 +51,6 @@ function sayYes() {
 
 // Initial load
 window.onload = updateContent;
+
 
 
