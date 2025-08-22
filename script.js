@@ -1,9 +1,9 @@
 // Questions + GIFs list
 const data = [
-  { q: "Do you love me? 🥰", gif: "catmiss3.gif" },
-  { q: "Please think again 🙏", gif: "cat4.gif" },
-  { q: "Ek aur baar soch lo 🤔", gif: "cat5.gif" },
-  { q: "Baby man jao, kitna bhav khaogi 😘", gif: "catkiss2.gif" }
+  { q: "The meru pyaar kero k? 🥰", gif: "catmiss3.gif" },
+  { q: "kero ne ketok pyaar kero 🙏", gif: "cat4.gif" },
+  { q: "baato jnne kiya kero 🤔", gif: "cat5.gif" },
+  { q: "suglaa kissi missi bi kero ke 😘", gif: "catkiss2.gif" }
 ];
 
 let current = 0;
@@ -51,3 +51,4 @@ function sayYes() {
 
 // Initial load
 window.onload = updateContent;
+
